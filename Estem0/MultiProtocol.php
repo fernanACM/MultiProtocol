@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Estem0\MultiProtocol;
 
-use AkmalFairuz\MultiVersion\session\SessionManager;
+use Estem0\session\SessionManager;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\Player;
 
