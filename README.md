@@ -4,7 +4,7 @@ An advanced MultiProtocol plugin
 # What is it for?
 This plugin makes your server support multiple protocols with a packet translation system 
 
-#MultiVersion builder:
+# MultiVersion builder:
 https://github.com/AkmalFairuz
 
 # Warning! 
