@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Estem0\network\translator;
+namespace AkmalFairuz\MultiVersion\network\translator;
 
-use Estem0\network\Serializer;
+use AkmalFairuz\MultiVersion\network\Serializer;
 use pocketmine\network\mcpe\protocol\PlayerListPacket;
 use function count;
 
