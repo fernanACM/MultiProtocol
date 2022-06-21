@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network;
+namespace Estem0\network;
 
 use Estem0\network\convert\MultiProtocolItemTypeDictionary;
 use Estem0\network\convert\MultiProtocolRuntimeBlockMapping;
@@ -23,7 +23,7 @@ use Estem0\network\translator\PlayerListPacketTranslator;
 use Estem0\network\translator\PlayerSkinPacketTranslator;
 use Estem0\network\translator\ResourcePacksInfoPacketTranslator;
 use Estem0\network\translator\SetTitlePacketTranslator;
-use Estem0\MultiVersion\network\translator\StartGamePacketTranslator;
+use Estem0\network\translator\StartGamePacketTranslator;
 use pocketmine\entity\Entity;
 use pocketmine\network\mcpe\convert\RuntimeBlockMapping;
 use pocketmine\network\mcpe\protocol\AddActorPacket;
