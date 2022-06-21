@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\convert;
+namespace Estem0\network\convert;
 
-use AkmalFairuz\MultiVersion\Loader;
-use AkmalFairuz\MultiVersion\network\ProtocolConstants;
+use Estem0\Loader;
+use Estem0\network\ProtocolConstants;
 use pocketmine\network\mcpe\convert\ItemTypeDictionary;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\network\mcpe\protocol\types\ItemTypeEntry;
@@ -19,7 +19,7 @@ use function is_int;
 use function is_string;
 use function json_decode;
 
-class MultiVersionItemTypeDictionary{
+class MultiProtocolItemTypeDictionary{
     use SingletonTrait;
 
     /**
