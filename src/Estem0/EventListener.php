@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Estem0;
 
-use AkmalFairuz\MultiVersion\network\MultiProrocolSessionAdapter;
-use AkmalFairuz\MultiVersion\network\ProtocolConstants;
-use AkmalFairuz\MultiVersion\network\Translator;
-use AkmalFairuz\MultiVersion\session\SessionManager;
-use AkmalFairuz\MultiVersion\task\CompressTask;
-use AkmalFairuz\MultiVersion\task\DecompressTask;
-use AkmalFairuz\MultiVersion\utils\Utils;
+use Estem0\network\MultiProrocolSessionAdapter;
+use Estem0\network\ProtocolConstants;
+use Estem0\network\Translator;
+use Estem0\session\SessionManager;
+use Estem0\task\CompressTask;
+use Estem0\task\DecompressTask;
+use Estem0\utils\Utils;
 use pocketmine\event\Listener;
 use pocketmine\event\player\PlayerQuitEvent;
 use pocketmine\event\server\DataPacketReceiveEvent;
@@ -39,8 +39,8 @@ class EventListener implements Listener{
      * @throws \ReflectionException
      * @priority LOWEST
      */
-    public function onDataPacketReceive(DataPacketReceiveEvent $event) {
-        $player = $event->getPlayer();
+    public function onDataPacketReceive(DataPacketReceiveEvent $event) : void{
+        $player = $event->getOrigin();
         $packet = $event->getPacket();
         if($packet instanceof PacketViolationWarningPacket) {
             Loader::getInstance()->getLogger()->info("PacketViolationWarningPacket packet=" . PacketPool::getPacketById($packet->getPacketId())->getName() . ",message=" . $packet->getMessage() . ",type=" . $packet->getType() . ",severity=" . $packet->getSeverity());
@@ -85,11 +85,11 @@ class EventListener implements Listener{
      * @priority HIGHEST
      * @ignoreCancelled true
      */
-    public function onDataPacketSend(DataPacketSendEvent $event) {
+    public function onDataPacketSend(DataPacketSendEvent $event) : void{
         if($this->cancel_send) {
             return;
         }
-        $player = $event->getPlayer();
+        $player = $event->getOrigin();
         $packet = $event->getPacket();
         $protocol = SessionManager::getProtocol($player);
         if($protocol === null) {
@@ -138,7 +138,7 @@ class EventListener implements Listener{
         $event->setCancelled();
     }
 
-    private function translateBatchPacketAndSend(BatchPacket $packet, Player $player, int $protocol) {
+    private function translateBatchPacketAndSend(BatchPacket $packet, Player $player, int $protocol) : bool{
         $newPacket = new BatchPacket();
         try{
             foreach($packet->getPackets() as $buf){
