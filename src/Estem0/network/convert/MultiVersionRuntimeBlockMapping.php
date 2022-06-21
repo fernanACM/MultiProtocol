@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\convert;
+namespace Estem0\network\convert;
 
-use AkmalFairuz\MultiVersion\Loader;
-use AkmalFairuz\MultiVersion\network\ProtocolConstants;
+use Estem0\Loader;
+use Estem0\network\ProtocolConstants;
 use pocketmine\block\BlockIds;
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\CompoundTag;
@@ -16,7 +16,7 @@ use pocketmine\utils\AssumptionFailedError;
 use function file_get_contents;
 use function json_decode;
 
-class MultiVersionRuntimeBlockMapping{
+class MultiProtocolRuntimeBlockMapping{
 
     /** @var int[][] */
     private static $legacyToRuntimeMap = [];
