@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\convert;
+namespace Estem0\network\convert;
 
-use AkmalFairuz\MultiVersion\Loader;
+use Estem0\Loader;
 use pocketmine\network\mcpe\convert\ItemTranslator;
 use pocketmine\utils\AssumptionFailedError;
 use pocketmine\utils\SingletonTrait;
@@ -15,7 +15,7 @@ use function is_numeric;
 use function is_string;
 use function json_decode;
 
-class MultiVersionItemTranslator{
+class MultiProtocolItemTranslator{
     use SingletonTrait;
 
     /**
@@ -86,7 +86,7 @@ class MultiVersionItemTranslator{
             }
         }
 
-        return new self(MultiVersionItemTypeDictionary::getInstance(), $simpleMappings, $complexMappings);
+        return new self(MultiProtocolnItemTypeDictionary::getInstance(), $simpleMappings, $complexMappings);
     }
 
     /**
@@ -96,7 +96,7 @@ class MultiVersionItemTranslator{
      * @phpstan-param array<string, int> $simpleMappings
      * @phpstan-param array<string, array<int, int>> $complexMappings
      */
-    public function __construct(MultiVersionItemTypeDictionary $dictionary, array $simpleMappings, array $complexMappings){
+    public function __construct(MultiProtocolItemTypeDictionary $dictionary, array $simpleMappings, array $complexMappings){
         foreach($dictionary->getAllEntries() as $protocol => $entries){
             if(Loader::getInstance()->isProtocolDisabled($protocol)) {
                 continue;
