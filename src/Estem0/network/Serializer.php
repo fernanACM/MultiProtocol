@@ -1,7 +1,12 @@
+<?php
 
-use AkmalFairuz\MultiVersion\network\convert\MultiVersionItemTranslator;
-use AkmalFairuz\MultiVersion\network\convert\MultiVersionItemTypeDictionary;
-use AkmalFairuz\MultiVersion\network\convert\MultiVersionRuntimeBlockMapping;
+declare(strict_types=1);
+
+namespace Estem0\network;
+
+use Estem0\network\convert\MultiProtocolItemTranslator;
+use Estem0\network\convert\MultiProtocolItemTypeDictionary;
+use Estem0\network\convert\MultiProtocolRuntimeBlockMapping;
 use pocketmine\block\BlockIds;
 use pocketmine\item\Durable;
 use pocketmine\item\Item;
@@ -267,3 +272,110 @@ class Serializer{
         $readExtraCrapInTheMiddle($packet);
 
         $packet->getVarInt();
+
+        $extraData = new NetworkBinaryStream($packet->getString());
+        return (static function() use ($protocol, $extraData, $netId, $id, $meta, $cnt) : Item{
+            $nbtLen = $extraData->getLShort();
+
+            /** @var CompoundTag|null $nbt */
+            $nbt = null;
+            if($nbtLen === 0xffff){
+                $nbtDataVersion = $extraData->getByte();
+                if($nbtDataVersion !== 1){
+                    throw new \UnexpectedValueException("Unexpected NBT data version $nbtDataVersion");
+                }
+                $decodedNBT = (new LittleEndianNBTStream())->read($extraData->buffer, false, $extraData->offset, 512);
+                if(!($decodedNBT instanceof CompoundTag)){
+                    throw new \UnexpectedValueException("Unexpected root tag type for itemstack");
+                }
+                $nbt = $decodedNBT;
+            }elseif($nbtLen !== 0){
+                throw new \UnexpectedValueException("Unexpected fake NBT length $nbtLen");
+            }
+
+            //TODO
+            for($i = 0, $canPlaceOn = $extraData->getLInt(); $i < $canPlaceOn; ++$i){
+                $extraData->get($extraData->getLShort());
+            }
+
+            //TODO
+            for($i = 0, $canDestroy = $extraData->getLInt(); $i < $canDestroy; ++$i){
+                $extraData->get($extraData->getLShort());
+            }
+
+            if($netId === MultiVersionItemTypeDictionary::getInstance()->fromStringId("minecraft:shield", $protocol)){
+                $extraData->getLLong(); //"blocking tick" (ffs mojang)
+            }
+
+            if(!$extraData->feof()){
+                throw new \UnexpectedValueException("Unexpected trailing extradata for network item $netId");
+            }
+
+            if($nbt !== null){
+                if($nbt->hasTag("Damage", IntTag::class)){
+                    $meta = $nbt->getInt("Damage");
+                    $nbt->removeTag("Damage");
+                    if(($conflicted = $nbt->getTag("___Damage_ProtocolCollisionResolution___")) !== null){
+                        $nbt->removeTag("___Damage_ProtocolCollisionResolution___");
+                        $conflicted->setName("Damage");
+                        $nbt->setTag($conflicted);
+                    }elseif($nbt->count() === 0){
+                        $nbt = null;
+                    }
+                }elseif(($metaTag = $nbt->getTag("___Meta___")) instanceof IntTag){
+                    //TODO HACK: This foul-smelling code ensures that we can correctly deserialize an item when the
+                    //client sends it back to us, because as of 1.16.220, blockitems quietly discard their metadata
+                    //client-side. Aside from being very annoying, this also breaks various server-side behaviours.
+                    $meta = $metaTag->getValue();
+                    $nbt->removeTag("___Meta___");
+                    if($nbt->count() === 0){
+                        $nbt = null;
+                    }
+                }
+            }
+            return ItemFactory::get($id, $meta, $cnt, $nbt);
+        })();
+    }
+
+    public static function getItemStackWrapper(DataPacket $packet, int $protocol): ItemStackWrapper{
+        $stackId = 0;
+        $stack = self::getItemStack($packet, function(NetworkBinaryStream $in) use (&$stackId) : void{
+            $hasNetId = $in->getBool();
+            if($hasNetId){
+                $stackId = $in->readGenericTypeNetworkId();
+            }
+        }, $protocol);
+        return new ItemStackWrapper($stackId, $stack);
+    }
+
+    public static function putEntityLink(DataPacket $packet, EntityLink $link) {
+        $packet->putEntityUniqueId($link->fromEntityUniqueId);
+        $packet->putEntityUniqueId($link->toEntityUniqueId);
+        ($packet->buffer .= \chr($link->type));
+        ($packet->buffer .= ($link->immediate ? "\x01" : "\x00"));
+        ($packet->buffer .= ($link->causedByRider ? "\x01" : "\x00"));
+    }
+
+    public static function putGameRules(DataPacket $packet, array $rules, int $protocol){
+        $packet->putUnsignedVarInt(count($rules));
+        foreach($rules as $name => $rule){
+            $packet->putString($name);
+            if($protocol >= ProtocolConstants::BEDROCK_1_17_0){
+                $packet->putBool($rule[2]);
+            }
+            $packet->putUnsignedVarInt($rule[0]);
+            switch($rule[0]){
+                case GameRuleType::BOOL:
+                    $packet->putBool($rule[1]);
+                    break;
+                case GameRuleType::INT:
+                    $packet->putUnsignedVarInt($rule[1]);
+                    break;
+                case GameRuleType::FLOAT:
+                    $packet->putLFloat($rule[1]);
+                    break;
+            }
+        }
+    }
+
+}
