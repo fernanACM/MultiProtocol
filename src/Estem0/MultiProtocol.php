@@ -6,7 +6,7 @@ namespace Estem0\MultiProtocol;
 
 use Estem0\session\SessionManager;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class MultiProtocol{
 
