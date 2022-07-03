@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Estem0\MultiProtocol;
+namespace Estem0;
 
 use Estem0\session\SessionManager;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
 use pocketmine\player\Player;
 
-class src\MultiProtocol{
+class MultiProtocol{
 
     public static function getProtocol(Player $player): int{
         return SessionManager::getProtocol($player) ?? ProtocolInfo::CURRENT_PROTOCOL;
