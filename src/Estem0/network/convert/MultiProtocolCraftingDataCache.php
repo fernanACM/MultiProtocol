@@ -20,7 +20,7 @@ use pocketmine\Server;
 
 use pocketmine\timings\Timings;
 
-class MultiProtoclCraftingManager extends CraftingManager{
+class MultiProtoclCraftingDataCache extends CraftingManager{
 
     /** @var BatchPacket[] */
 
