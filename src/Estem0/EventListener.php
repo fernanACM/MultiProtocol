@@ -47,7 +47,7 @@ class EventListener implements Listener{
         }
         if($packet instanceof LoginPacket) {
             if(!Loader::getInstance()->canJoin) {
-                $player->close("", "Trying to join the server before CraftingManager registered");
+               $event->$player->close("", "Trying to join the server before CraftingManager registered");
                 $event->setCancelled();
                 return;
             }
