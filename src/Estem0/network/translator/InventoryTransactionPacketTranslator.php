@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\convert\MultiVersionRuntimeBlockMapping;
-use AkmalFairuz\MultiVersion\network\Serializer;
-use AkmalFairuz\MultiVersion\utils\Utils;
+use Estem0\network\convert\MultiVersionRuntimeBlockMapping;
+use Estem0\network\Serializer;
+use Estem0\utils\Utils;
 use pocketmine\math\Vector3;
 use pocketmine\network\mcpe\convert\RuntimeBlockMapping;
 use pocketmine\network\mcpe\protocol\InventoryTransactionPacket;
@@ -21,7 +21,7 @@ use pocketmine\network\mcpe\protocol\types\NetworkInventoryAction;
 use UnexpectedValueException as PacketDecodeException;
 use function count;
 
-class InventoryTransactionPacketTranslator{
+class InventoryTransactionPacketTranslator {
 
     public static function serialize(InventoryTransactionPacket $packet, int $protocol) {
         $packet->writeGenericTypeNetworkId($packet->requestId);
