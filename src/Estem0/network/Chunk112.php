@@ -10,7 +10,7 @@ use pocketmine\network\mcpe\protocol\LevelChunkPacket;
 use pocketmine\tile\Spawnable;
 use function chr;
 
-class Chunk112{
+class Chunk112 {
 
     public static function serialize(Level $level, LevelChunkPacket $origin): ?LevelChunkPacket{
         $x = $origin->getChunkX();
