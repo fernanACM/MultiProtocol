@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\convert\MultiVersionItemTranslator;
-use AkmalFairuz\MultiVersion\network\ProtocolConstants;
-use AkmalFairuz\MultiVersion\network\Serializer;
+use Estem0\network\convert\MultiVersionItemTranslator;
+use Estem0\network\ProtocolConstants;
+use Estem0\network\Serializer;
 use pocketmine\inventory\FurnaceRecipe;
 use pocketmine\inventory\ShapedRecipe;
 use pocketmine\inventory\ShapelessRecipe;
@@ -15,7 +15,7 @@ use pocketmine\network\mcpe\protocol\CraftingDataPacket;
 use function count;
 use function str_repeat;
 
-class CraftingDataPacketTranslator{
+class CraftingDataPacketTranslator {
 
     private static function writeEntry($entry, NetworkBinaryStream $stream, int $pos, int $protocol) : int{
         if($entry instanceof ShapelessRecipe){
