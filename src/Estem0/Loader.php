@@ -41,7 +41,7 @@ class Loader extends PluginBase{
         Config::init($this->getDataFolder() . "config.yml");
 
         self::$resourcesPath = $this->getDataFolder();
-        MultiVersionRuntimeBlockMapping::init();
+        MultiProtocolRuntimeBlockMapping::init();
 
         // wait until other plugin register custom craft
         $this->getScheduler()->scheduleDelayedTask(new ClosureTask(function() : void {
