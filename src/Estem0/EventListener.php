@@ -24,7 +24,7 @@ use pocketmine\network\mcpe\protocol\PacketPool;
 use pocketmine\network\mcpe\protocol\PacketViolationWarningPacket;
 use pocketmine\network\mcpe\protocol\PlayStatusPacket;
 use pocketmine\network\mcpe\protocol\ProtocolInfo;
-use pocketmine\Player;
+use pocketmine\player\Playet;
 use pocketmine\Server;
 use pocketmine\utils\BinaryDataException;
 use function in_array;
@@ -76,7 +76,7 @@ class EventListener implements Listener{
      * @param PlayerQuitEvent $event
      * @priority HIGHEST
      */
-    public function onPlayerQuit(PlayerQuitEvent $event) {
+    public function onQuit(PlayerQuitEvent $event) {
         SessionManager::remove($event->getPlayer());
     }
 
