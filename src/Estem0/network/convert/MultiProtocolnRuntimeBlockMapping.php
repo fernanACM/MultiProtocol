@@ -30,7 +30,11 @@ class MultiProtocolRuntimeBlockMapping{
         ProtocolConstants::BEDROCK_1_17_0 => "_1_17_0",
         ProtocolConstants::BEDROCK_1_17_10 => "_1_17_10",
         ProtocolConstants::BEDROCK_1_17_30 => "_1_17_30",
-        ProtocolConstants::BEDROCK_1_17_40 => "_1_17_40"
+        ProtocolConstants::BEDROCK_1_17_40 => "_1_17_40",
+        ProtocolConstants::BEDROCK_1_18_0 => "_1_18_0",
+        ProtocolConstants::BEDROCK_1_18_10 => "_1_18_10",
+        ProtocolConstants::BEDROCK_1_18_30 => "_1_18_30",
+        ProtocolConstants::BEDROCK_1_19_0 => "_1_19_0",
     ];
 
     private function __construct(){
