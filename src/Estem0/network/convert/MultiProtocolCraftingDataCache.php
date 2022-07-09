@@ -58,12 +58,12 @@ class MultiProtocolCraftingDataCache extends CraftingManager{
             $batch->addPacket($pk);
             $batch->setCompressionLevel(Server::getInstance()->networkCompressionLevel);
             $batch->encode();
-            $this->multiVersionCraftingDataCache[$protocol] = $batch;
+            $this->MultiProtocolCraftingDataCache[$protocol] = $batch;
         }
         Timings::$craftingDataCacheRebuildTimer->stopTiming();
     }
 
     public function getCraftingDataPacketA(int $protocol): BatchPacket{
-        return $this->multiVersionCraftingDataCache[$protocol];
+        return $this->MultiProtocolCraftingDataCache[$protocol];
     }
 }
