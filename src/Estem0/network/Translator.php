@@ -52,7 +52,7 @@ use pocketmine\network\mcpe\protocol\ResourcePackStackPacket;
 use pocketmine\network\mcpe\protocol\SetTitlePacket;
 use pocketmine\network\mcpe\protocol\StartGamePacket;
 use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class Translator{
 
@@ -149,7 +149,7 @@ class Translator{
                         return $packet;
                     case LevelEventPacket::EVENT_PARTICLE_PUNCH_BLOCK:
                         $position = $packet->position;
-                        $block = $player->getLevelNonNull()->getBlock($position);
+                        $block = $player->getWorld()->getBlock($position);
                         if($block->getId() === 0) {
                             return null;
                         }
@@ -161,8 +161,8 @@ class Translator{
             case LevelChunkPacket::NETWORK_ID:
                 /** @var LevelChunkPacket $packet */
                 if($protocol <= ProtocolConstants::BEDROCK_1_19_30) {
-                    if($player->getLevel() !== null){
-                        return Chunk112::serialize($player->getLevel(), $packet);
+                    if($player->getWorld() !== null){
+                        return Chunk112::serialize($player->getWorld(), $packet);
                     }
                     return null;
                 }

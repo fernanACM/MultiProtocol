@@ -7,7 +7,7 @@ namespace Estem0\network\convert;
 use Estem0\Loader;
 use Estem0\network\ProtocolConstants;
 use Estem0\network\Translator;
-use pocketmine\inventory\CraftingManager;
+use pocketmine\crafting\CraftingManager;
 use pocketmine\network\mcpe\protocol\BatchPacket;
 use pocketmine\network\mcpe\protocol\CraftingDataPacket;
 use pocketmine\Server;

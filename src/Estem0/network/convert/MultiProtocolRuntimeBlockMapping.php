@@ -6,7 +6,7 @@ namespace Estem0\network\convert;
 
 use Estem0\Loader;
 use Estem0\network\ProtocolConstants;
-use pocketmine\block\BlockIds;
+use pocketmine\block\BlockLegacyIds;
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\nbt\tag\CompoundTag;
 use pocketmine\network\mcpe\convert\R12ToCurrentBlockMapEntry;
@@ -147,7 +147,7 @@ class MultiProtocolRuntimeBlockMapping {
          * if not found, try id+0 (strip meta)
          * if still not found, return update! block
          */
-        return self::$legacyToRuntimeMap[$protocol][($id << 4) | $meta] ?? self::$legacyToRuntimeMap[$protocol][$id << 4] ?? self::$legacyToRuntimeMap[$protocol][BlockIds::INFO_UPDATE << 4];
+        return self::$legacyToRuntimeMap[$protocol][($id << 4) | $meta] ?? self::$legacyToRuntimeMap[$protocol][$id << 4] ?? self::$legacyToRuntimeMap[$protocol][BlockLegacyIds::INFO_UPDATE << 4];
     }
 
     /**

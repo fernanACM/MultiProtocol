@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Estem0\session;
 
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class Session{
 
