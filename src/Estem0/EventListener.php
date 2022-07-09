@@ -164,7 +164,6 @@ class EventListener implements Listener{
                 $this->cancel_send = false;
             });
             Server::getInstance()->getAsyncPool()->submitTask($task);
-            return;
         }
         $this->cancel_send = true;
         $newPacket->setCompressionLevel(Server::getInstance()->networkCompressionLevel);
