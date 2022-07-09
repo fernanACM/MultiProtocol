@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\ProtocolConstants;
+use Estem0\network\ProtocolConstants;
 use pocketmine\network\mcpe\protocol\NpcRequestPacket;
 
-class NpcRequestPacketTranslator{
+class NpcRequestPacketTranslator {
 
     public static function deserialize(NpcRequestPacket $packet, int $protocol) {
         $packet->entityRuntimeId = $packet->getEntityRuntimeId();
