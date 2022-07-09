@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\Serializer;
+use Estem0\network\Serializer;
 use pocketmine\network\mcpe\protocol\CreativeContentPacket;
 use function count;
 
-class CreativeContentPacketTranslator{
+class CreativeContentPacketTranslator {
 
     public static function serialize(CreativeContentPacket $packet, int $protocol) {
         $packet->putUnsignedVarInt(count($packet->getEntries()));
