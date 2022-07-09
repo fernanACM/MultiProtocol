@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\ProtocolConstants;
-use AkmalFairuz\MultiVersion\network\Serializer;
+use Estem0\network\ProtocolConstants;
+use Estem0\network\Serializer;
 use pocketmine\nbt\NetworkLittleEndianNBTStream;
 use pocketmine\network\mcpe\protocol\StartGamePacket;
 use function count;
