@@ -8,7 +8,7 @@ use Estem0\command\MultiProtocolCommand;
 use Estem0\network\convert\MultiProtocolCraftingManager;
 use Estem0\network\convert\MultiProtocolRuntimeBlockMapping;
 use Estem0\task\CheckUpdateTask;
-use pocketmine\inventory\CraftingManager;
+use pocketmine\crafting\CraftingManager;
 use pocketmine\plugin\PluginBase;
 use pocketmine\scheduler\ClosureTask;
 use function in_array;
