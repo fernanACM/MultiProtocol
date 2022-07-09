@@ -26,7 +26,9 @@ class AddPlayerPacketTranslator{
 			$packet->putVarInt($packet->gameType);
 		}
         $packet->putEntityMetadata($packet->metadata);
-
+        if($protocol >= ProtocolConstants::BEDROCK_1_18_30) {
+			$packet->putVarInt($packet->gameMode);
+		}
         $packet->putUnsignedVarInt($packet->uvarint1);
         $packet->putUnsignedVarInt($packet->uvarint2);
         $packet->putUnsignedVarInt($packet->uvarint3);
