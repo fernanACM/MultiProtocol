@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\Serializer;
+use Estem0\network\Serializer;
 use pocketmine\network\mcpe\protocol\GameRulesChangedPacket;
 
-class GameRulesChangedPacketTranslator{
+class GameRulesChangedPacketTranslator {
 
     public static function serialize(GameRulesChangedPacket $packet, int $protocol) {
         Serializer::putGameRules($packet, $packet->gameRules, $protocol);
