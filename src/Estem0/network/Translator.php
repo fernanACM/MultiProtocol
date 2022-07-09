@@ -52,7 +52,7 @@ use pocketmine\network\mcpe\protocol\ResourcePackStackPacket;
 use pocketmine\network\mcpe\protocol\SetTitlePacket;
 use pocketmine\network\mcpe\protocol\StartGamePacket;
 use pocketmine\network\mcpe\protocol\UpdateBlockPacket;
-use pocketmine\Player;
+use pocketmine\player\Player;
 
 class Translator{
 
