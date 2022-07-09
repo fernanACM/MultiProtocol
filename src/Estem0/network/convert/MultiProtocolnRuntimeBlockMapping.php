@@ -16,7 +16,7 @@ use pocketmine\utils\AssumptionFailedError;
 use function file_get_contents;
 use function json_decode;
 
-class MultiProtocolRuntimeBlockMapping{
+class MultiProtocolRuntimeBlockMapping {
 
     /** @var int[][] */
     private static $legacyToRuntimeMap = [];
