@@ -7,7 +7,7 @@ namespace Estem0\network\translator;
 use Estem0\network\Serializer;
 use pocketmine\network\mcpe\protocol\AddItemActorPacket;
 
-class AddItemActorPacketTranslator{
+class AddItemActorPacketTranslator {
 
     public static function serialize(AddItemActorPacket $packet, int $protocol) {
         $packet->putEntityUniqueId($packet->entityUniqueId ?? $packet->entityRuntimeId);
