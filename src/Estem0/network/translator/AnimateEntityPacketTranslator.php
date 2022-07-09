@@ -7,7 +7,7 @@ namespace Estem0\network\translator;
 use Estem0\network\ProtocolConstants;
 use pocketmine\network\mcpe\protocol\AnimateEntityPacket;
 
-class AnimateEntityPacketTranslator{
+class AnimateEntityPacketTranslator {
 
     public static function serialize(AnimateEntityPacket $packet, int $protocol) {
         $packet->putString($packet->getAnimation());
