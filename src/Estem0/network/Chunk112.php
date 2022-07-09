@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Estem0\network;
 
-use pocketmine\level\format\Chunk;
-use pocketmine\level\Level;
+use pocketmine\world\format\Chunk;
+use pocketmine\world\World;
 use pocketmine\network\mcpe\protocol\LevelChunkPacket;
-use pocketmine\tile\Spawnable;
+use pocketmine\block\tile\Spawnable;
 use function chr;
 
 class Chunk112 {
 
-    public static function serialize(Level $level, LevelChunkPacket $origin): ?LevelChunkPacket{
+    public static function serialize(Level $level, LevelChunkPacket $origin): ?WorldChunkPacket{
         $x = $origin->getChunkX();
         $z = $origin->getChunkZ();
         $chunk = $level->getChunk($x, $z);
