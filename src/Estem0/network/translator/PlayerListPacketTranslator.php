@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace AkmalFairuz\MultiVersion\network\translator;
+namespace Estem0\network\translator;
 
-use AkmalFairuz\MultiVersion\network\Serializer;
+use Estem0\network\Serializer;
 use pocketmine\network\mcpe\protocol\PlayerListPacket;
 use function count;
 
-class PlayerListPacketTranslator{
+class PlayerListPacketTranslator {
 
     public static function serialize(PlayerListPacket $packet, int $protocol) {
         ($packet->buffer .= \chr($packet->type));
