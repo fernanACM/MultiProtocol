@@ -11,7 +11,7 @@ use pocketmine\network\mcpe\protocol\types\CommandData;
 use pocketmine\network\mcpe\protocol\types\CommandEnum;
 use pocketmine\network\mcpe\protocol\types\CommandParameter;
 
-class AvailableCommandsPacketTranslator{
+class AvailableCommandsPacketTranslator {
 
     public static function serialize(AvailableCommandsPacket $packet, int $protocol) {
         /** @var int[] $enumValueIndexes */
