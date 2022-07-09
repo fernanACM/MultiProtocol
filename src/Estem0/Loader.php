@@ -31,7 +31,7 @@ class Loader extends PluginBase{
         return self::$instance;
     }
 
-    public function onEnable() : void {
+    protected function onEnable(): void{
         self::$instance = $this;
 
         foreach($this->getResources() as $k => $v) {

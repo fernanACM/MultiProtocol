@@ -107,7 +107,7 @@ class EventListener implements Listener{
                         });
                         Server::getInstance()->getAsyncPool()->submitTask($task);
                     } catch(BinaryDataException $e) {}
-                    $event->setCancelled();
+                    $event->cancel();
                     return;
                 }
                 $packet->decode();
@@ -124,7 +124,7 @@ class EventListener implements Listener{
                 return;
             }
             if($newPacket === null) {
-                $event->setCancelled();
+                $event->cancel();
                 return;
             }
             $batch = new BatchPacket();

@@ -7,7 +7,7 @@ namespace Estem0\network;
 use Estem0\network\convert\MultiProtocolItemTranslator;
 use Estem0\network\convert\MultiProtocolItemTypeDictionary;
 use Estem0\network\convert\MultiProtocolRuntimeBlockMapping;
-use pocketmine\block\BlockIds;
+use pocketmine\block\BlockLegacyIds;
 use pocketmine\item\Durable;
 use pocketmine\item\Item;
 use pocketmine\item\ItemFactory;
@@ -175,7 +175,7 @@ class Serializer{
         $isBlockItem = $item->getId() < 256;
         if($isBlockItem){
             $block = $item->getBlock();
-            if($block->getId() !== BlockIds::AIR){
+            if($block->getId() !== BlockLegacyIds::AIR){
                 $blockRuntimeId = MultiVersionRuntimeBlockMapping::toStaticRuntimeId($block->getId(), $block->getDamage(), $protocol);
             }
         }
