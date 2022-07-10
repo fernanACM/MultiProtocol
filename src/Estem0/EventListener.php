@@ -53,7 +53,7 @@ class EventListener implements Listener{
             }
             if(!in_array($packet->protocol, ProtocolConstants::SUPPORTED_PROTOCOLS, true) || Loader::getInstance()->isProtocolDisabled($packet->protocol)) {
                 $player->$event->sendPlayStatus(PlayStatusPacket::LOGIN_FAILED_SERVER, true);
-                $player->close("", $player->getServer()->getLanguage()->translateString("pocketmine.disconnect.incompatibleProtocol", [$packet->protocol]), false);
+                $player->$event->close("", $player->getServer()->getLanguage()->translateString("pocketmine.disconnect.incompatibleProtocol", [$packet->protocol]), false);
                 $event->cancel();
                 return;
             }
@@ -64,7 +64,7 @@ class EventListener implements Listener{
             $protocol = $packet->protocol;
             $packet->protocol = ProtocolInfo::CURRENT_PROTOCOL;
 
-            Utils::forceSetProps($player, "sessionAdapter", new MultiProtocolSessionAdapter($player->getServer(), $player, $protocol));
+            Utils::forceSetProps($player, "sessionAdapter", new MultiProtocolSessionAdapter($player->$event->getServer(), $player, $protocol));
 
             SessionManager::create($player, $protocol);
 
