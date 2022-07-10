@@ -26,7 +26,7 @@ use pocketmine\network\mcpe\protocol\types\SkinData;
 use pocketmine\network\mcpe\protocol\types\SkinImage;
 use function count;
 
-class Serializer{
+class Serializer {
 
     public static function putSkin(SkinData $skin, DataPacket $packet, int $protocol){
         $packet->putString($skin->getSkinId());
