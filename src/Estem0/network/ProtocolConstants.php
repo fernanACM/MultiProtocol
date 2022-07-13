@@ -17,6 +17,7 @@ class ProtocolConstants{
     public const BEDROCK_1_18_10 = 486;
     public const BEDROCK_1_18_30 = 503;
     public const BEDROCK_1_19_0 = 527;
+    public const BEDROCK_1_19_20 = 512;
 
     public const MINECRAFT_VERSION = [
         self::BEDROCK_1_16_220 => "1.16.220",
@@ -28,6 +29,7 @@ class ProtocolConstants{
         self::BEDROCK_1_18_10 => "1.18.10",
         self::BEDROCK_1_18_30 => "1.18.30",
         self::BEDROCK_1_19_0 => "1.19.0",
+        self::BEDROCK_1_19_20 => "1.19.20",
         ProtocolInfo::CURRENT_PROTOCOL => ProtocolInfo::MINECRAFT_VERSION_NETWORK
     ];
 
@@ -41,6 +43,7 @@ class ProtocolConstants{
         self::BEDROCK_1_18_10,
         self::BEDROCK_1_18_30,
         self::BEDROCK_1_19_0,
+        self::BEDROCK_1_19_20,
         ProtocolInfo::CURRENT_PROTOCOL
     ];
 }
