@@ -3,4 +3,4 @@ api: [4.0.0]
 version: 1.0.0
 author: [NoClip, Estem01, Henry12960]
 main: Estem0\MultiProtocol
-mcpe-protocol: 512
+mcpe-protocol: [534, 533, 532, 530, 526, 524, 516, 514, 512, 513]
